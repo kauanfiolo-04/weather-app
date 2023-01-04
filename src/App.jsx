@@ -7,6 +7,7 @@ import Card from './components/Card/Card'
 function App() {
   const [city, setCity]=useState('')
   const [data, setData]=useState(initialData)
+  const [checked,setChecked]=useState(false)
 
 
   const handleSubmit=(e)=>{
@@ -15,6 +16,10 @@ function App() {
     fetchData(city).then((res)=>{
       setData(res)
     })
+  }
+
+  const handleCheck=()=>{
+    setChecked(!checked)
   }
 
   return (
@@ -34,8 +39,13 @@ function App() {
           Search
         </button>
       </form>
+
+      <div>
+        <input type="checkbox" name='u' className='' onChange={ handleCheck } />
+        <span>Lorem</span>
+      </div>
       
-      <Card data={data} />
+      <Card data={data} unit={checked ? 'F' : 'C'}/>
 
     </div>
   )

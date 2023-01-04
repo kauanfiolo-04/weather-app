@@ -1,12 +1,20 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-function Card({ data }) {
+function Card({ data, unit }) {
 
   const {
     location,
     current,
   } = data
+
+  const Unit = (unit)=>{
+    if(unit=='C'){
+      return current.temp_c
+    }else{
+      return current.temp_f
+    }
+  }
 
   return (
     <div className='bg-white p-6 mt-10 rounded-lg shadow-md min-w-[220px]'>
@@ -16,8 +24,8 @@ function Card({ data }) {
       </div>
 
       <div className='font-bold text-slate-700 flex mt-4 mb-2 justify-center'>
-        <span className='text-8xl'>{current.temp_c}</span>
-        <span className='text-2xl mt-5'>°C</span>
+        <span className='text-8xl'>{Unit(unit)}</span>
+        <span className='text-2xl mt-5'>{`º${unit}`}</span>
       </div>
 
       <div className='flex items-center flex-col justify-center'>
